@@ -35,3 +35,11 @@ Section 27: VPC
     ->172.16.0.0 -> 172.31.255.255 (172.16.0.0/12)=> aws default VPC in that range
     ->192.168.0.0 -> 192.168.255.255 (192.168.0.0/16) => in small networks(eg home networks)
 ->all the rest of the IPs are public IPs.
+
+#Default VPC Walkthrough:
+--------------------------
+->All new AWS accounts have a default VPC in each region.
+->The default VPC is a VPC that is created automatically when you create an AWS account.
+->New EC2 instances are launched into the default VPC if no subnet is specified.
+->Default VPC has internet connectivity by default. and all EC2 instances launched into the default VPC have public IP addresses.
+->we also get a public and a private IPv4 DNS names.
