@@ -43,3 +43,81 @@ Section 27: VPC
 ->New EC2 instances are launched into the default VPC if no subnet is specified.
 ->Default VPC has internet connectivity by default. and all EC2 instances launched into the default VPC have public IP addresses.
 ->we also get a public and a private IPv4 DNS names.
+
+#subnet:
+--------
+->AWS reserves 5IP addresses (first 4 & last 1) in each subnet.
+->These 5 IP addresses are not available for use and can't be assigned to an EC2 instance.
+->Example: 
+    ->If you create a subnet with a CIDR block of 10.0.0.0/24, the following IP addresses are reserved:
+        ->10.0.0.0 (Network Address)
+        ->10.0.0.1 (Reserved for the VPC router)
+        ->10.0.0.2 (Reserved for DNS)
+        ->10.0.0.3 (Reserved for future use)
+        ->10.0.0.255 (Broadcast Address)
+#internet gateway:
+-------------------
+->An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances in your VPC and the internet.
+->one vpc can have only one internet gateway.
+->internet gateway is a fully managed service that scales automatically to handle the traffic.
+
+#route table:
+-------------------
+->A route table is a set of rules, called routes, that are used to determine where network traffic is directed.
+->Each subnet in your VPC must be associated with a route table.
+->By default, each route table contains a local route that enables communication between instances in the same VPC.
+->You can add custom routes to the route table to enable communication with other networks, such as the internet or your on-premises network.
+
+#NAT Gateway:
+-------------------
+->A NAT (Network Address Translation) gateway is a managed NAT service that provides internet access to instances in a private subnet.
+->NAT gateways allow instances in a private subnet to initiate outbound traffic to the internet while preventing unsolicited inbound traffic from the internet.
+->You can create a NAT gateway in a public subnet and configure the route table of the private subnet to route internet-bound traffic to the NAT gateway.
+
+#NAT Instance:
+--------------
+->A NAT instance is an EC2 instance that you configure to perform NAT for instances in a private subnet.
+->NAT instances allow instances in a private subnet to initiate outbound traffic to the internet while preventing unsolicited inbound traffic from the internet.
+->You can create a NAT instance in a public subnet and configure the route table of the private subnet to route internet-bound traffic to the NAT instance.
+
+#NACL (Network Access Control List):
+------------------------------------
+->A NACL is a stateless firewall that controls inbound and outbound traffic at the subnet level.
+->NACLs operate at the subnet level and can be associated with one or more subnets in a VPC.
+->NACLs allow you to define rules that control traffic based on IP protocol, port number, and source/destination IP address.
+->NACLs are stateless, meaning that if you allow inbound traffic, you must also allow the corresponding outbound traffic.
+
+#Security Groups:
+-------------------
+->Security groups are stateful firewalls that control inbound and outbound traffic at the instance level.
+->Security groups operate at the instance level and can be associated with one or more instances in a VPC.
+->Security groups allow you to define rules that control traffic based on IP protocol, port number, and source/destination IP address.
+->Security groups are stateful, meaning that if you allow inbound traffic, the corresponding outbound traffic is automatically allowed.
+
+#Ephemeral Ports:
+-------------------
+->Ephemeral ports are temporary ports that are used by the operating system to establish outbound connections.
+->When an instance initiates an outbound connection, the operating system assigns an ephemeral port to the connection.
+->Ephemeral ports are typically in the range of 1024 to 65535.
+->Different operating systems may have different ranges for ephemeral ports, but the range of 1024 to 65535 is commonly used.
+    ->IANA & MS Windows 10 => 49152 to 65535
+    ->Linux => 32768 to 60999
+    ->macOS => 49152 to 65535
+
+#VPC Peering:
+-------------------
+->VPC peering is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses.
+->VPC peering can be established between VPCs in the same AWS account or in different AWS accounts.
+->VPC peering is a one-to-one relationship, meaning that each VPC can be peered with another VPC, but not with multiple VPCs at the same time.
+->VPC peering does not support transitive routing, meaning that if VPC A is peered with VPC B, and VPC B is peered with VPC C, VPC A cannot communicate with VPC C through VPC B.
+
+#VPC Endpoints:
+---------------
+->VPC endpoints are virtual devices that enable you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink.
+->VPC endpoints allow you to access AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+->VPC endpoints are available in two types:
+    ->Interface Endpoints: These endpoints are used to connect to AWS services that support PrivateLink, such as Amazon S3, Amazon DynamoDB, and AWS Lambda.
+    ->Gateway Endpoints: These endpoints are used to connect to AWS services that do not support PrivateLink, such as Amazon S3 and Amazon DynamoDB.
+->VPC endpoints are highly available and scalable, and they provide a secure and private connection to AWS services.
+->gateway is most commonly used for S3 and DynamoDB.
+->interface is used for most other services.
