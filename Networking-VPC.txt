@@ -111,8 +111,8 @@ Section 27: VPC
 ->VPC peering is a one-to-one relationship, meaning that each VPC can be peered with another VPC, but not with multiple VPCs at the same time.
 ->VPC peering does not support transitive routing, meaning that if VPC A is peered with VPC B, and VPC B is peered with VPC C, VPC A cannot communicate with VPC C through VPC B.
 
-#VPC Endpoints:
----------------
+#VPC Endpoints(VPC level):
+--------------------------
 ->VPC endpoints are virtual devices that enable you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink.
 ->VPC endpoints allow you to access AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
 ->VPC endpoints are available in two types:
@@ -121,3 +121,12 @@ Section 27: VPC
 ->VPC endpoints are highly available and scalable, and they provide a secure and private connection to AWS services.
 ->gateway is most commonly used for S3 and DynamoDB.
 ->interface is used for most other services.
+
+#VPC Flow Logs:
+-------------------
+->VPC Flow Logs are a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC.
+->Flow logs can be used for monitoring, troubleshooting, and security analysis of your VPC traffic.
+->You can create flow logs for individual network interfaces, subnets, or the entire VPC.
+->Flow log data is published to Amazon CloudWatch Logs or Amazon S3, where you can analyze it using various tools.
+->Flow logs capture information such as source and destination IP addresses, ports, protocols, and the number of bytes transferred.
+
