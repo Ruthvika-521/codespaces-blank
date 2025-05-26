@@ -130,3 +130,36 @@ Section 27: VPC
 ->Flow log data is published to Amazon CloudWatch Logs or Amazon S3, where you can analyze it using various tools.
 ->Flow logs capture information such as source and destination IP addresses, ports, protocols, and the number of bytes transferred.
 
+#AWS site-to-site VPN:
+----------------------
+->AWS site-to-site VPN is a service that enables you to securely connect your on-premises network or branch office to your AWS VPC.
+->Site-to-site VPN uses IPsec (Internet Protocol Security) to create a secure and encrypted connection over the internet.
+->You can create a site-to-site VPN connection using the AWS Management Console, AWS CLI, or AWS SDKs.
+->Site-to-site VPN supports both static and dynamic routing, allowing you to choose the routing method that best fits your network architecture.
+
+#AWS Direct Connect:
+----------------------
+->AWS Direct Connect is a service that enables you to establish a dedicated network connection from your on-premises data center to your AWS VPC.
+->Direct Connect provides a more consistent network experience compared to internet-based connections.
+->You can create a Direct Connect connection using the AWS Management Console, AWS CLI, or AWS SDKs.
+->Direct Connect supports both public and private virtual interfaces, allowing you to connect to AWS services or your VPC.
+
+#AWS Transit Gateway:
+----------------------
+->AWS Transit Gateway is a service that enables you to connect multiple VPCs and on-premises networks through a single gateway.
+->Transit Gateway simplifies network architecture by providing a central hub for routing traffic between connected networks.
+->You can create a Transit Gateway using the AWS Management Console, AWS CLI, or AWS SDKs.
+->Transit Gateway supports both IPv4 and IPv6 traffic, and it can be used to connect VPCs in the same AWS account or in different AWS accounts.
+
+#IP V6:
+----------------------
+->IPv6 (Internet Protocol version 6) is the most recent version of the Internet Protocol (IP), designed to replace IPv4.
+->IPv6 provides a larger address space than IPv4, allowing for a virtually unlimited number of unique IP addresses.
+->AWS services support IPv6, enabling you to assign IPv6 addresses to your VPCs, subnets, and network interfaces.
+->You can use IPv6 in conjunction with IPv4, allowing for dual-stack networking.
+
+#egress only internet gateway:
+-----------------------------
+->An egress-only internet gateway is a VPC component that allows outbound IPv6 traffic from instances in your VPC to the internet while preventing unsolicited inbound traffic from the internet.
+->Egress-only internet gateways are used to enable IPv6-enabled instances in a private subnet to access the internet for software updates, patches, and other outbound traffic.
+->You can create an egress-only internet gateway using the AWS Management Console, AWS CLI, or AWS SDKs.
