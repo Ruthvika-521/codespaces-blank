@@ -102,42 +102,72 @@ aws ec2 describe-availability-zones
     - Data about the instance that can be accessed from within the instance itself, including instance ID, public IP address, and security group information.
 12. Instance Store:
     - Temporary storage that is physically attached to the host computer, providing high I/O performance but data is lost when the instance is stopped or terminated.
-#AWS EC2 Use Cases:
+
+#EC2 instance purchasing options or pricing models:
+---------------------------------------------------
+1. On-Demand Instances:
+   - Pay for compute capacity by the hour or second, with no long-term commitments.
+   - Ideal for short-term, unpredictable workloads.
+
+2. Reserved Instances:
+   - Reserve capacity for a one- or three-year term, with significant discounts compared to on-demand pricing.
+   - Suitable for steady-state workloads.
+
+3. Spot Instances:
+   - Bid on unused EC2 capacity at reduced rates.
+   - Cost-effective for flexible, interruption-tolerant workloads.
+
+4. Savings Plans:
+   - Flexible pricing model offering significant savings on EC2 usage in exchange for a commitment to a consistent amount of usage (measured in $/hr) for a 1 or 3-year term.
+5. Dedicated Hosts:
+   - Physical servers dedicated to your use, providing more control over instance placement and compliance.
+   - Useful for applications with specific licensing requirements.
+
+#AWS EC2 Instance Lifecycle:
 --------------------------------
-1. Web Hosting:
-   - Host websites and web applications with scalable compute resources.
-2. Application Development and Testing:
-   - Quickly launch and test applications in a flexible environment.
-3. Big Data Processing:
-   - Run big data frameworks like Hadoop and Spark on scalable compute resources.
-4. Machine Learning:
-   - Train and deploy machine learning models using GPU instances for high-performance computing.
-5. High-Performance Computing (HPC):
-   - Perform complex simulations and calculations using compute-optimized instances.
-6. Backup and Disaster Recovery:
-   - Use EC2 instances for backup solutions and disaster recovery strategies.
-7. Gaming:
-   - Host game servers with low-latency performance and scalable resources.
-8. Media Processing
+1. Launch:
+   - Create a new EC2 instance from an AMI (Amazon Machine Image) with the desired instance type and configuration.
 
-    - Process and transcode media files using high-performance instances.
-9. IoT Applications:
-   - Run IoT applications that require scalable compute resources for data processing and analytics.
-10. Content Delivery:
-    - Use EC2 instances in conjunction with Amazon CloudFront for content delivery and caching.
-11. Virtual Desktops:
-    - Deploy virtual desktop infrastructure (VDI) solutions for remote work environments.
-12. Serverless Architectures:
-    - Use EC2 instances in combination with AWS Lambda and other services to build serverless applications. 
-13. Database Hosting:
+2. Running:
+   - The instance is up and running, and you can connect to it via SSH or RDP, depending on the operating system.
 
-    - Host databases on EC2 instances, including relational databases like MySQL and PostgreSQL, or NoSQL databases like MongoDB and Cassandra.
-14. Legacy Application Migration:
-    - Migrate legacy applications to the cloud by running them on EC2 instances, allowing for modernization and scalability.
-15. DevOps and CI/CD Pipelines:
+3. Stopping:
+   - You can stop an instance to save costs when it's not in use. The instance's state is saved, and you can start it again later.
 
-    - Use EC2 instances to run continuous integration and continuous deployment (CI/CD) pipelines for software development and delivery.
-16. High Availability and Fault Tolerance:
-    - Deploy applications across multiple EC2 instances and Availability Zones to ensure high availability and fault tolerance.
-17. Hybrid Cloud Solutions:
-    - Integrate on-premises infrastructure with EC2 instances for hybrid cloud deployments, allowing for seamless data transfer and application integration.
+4. Terminating:
+   - When you no longer need an instance, you can terminate it. This permanently deletes the instance and its associated resources.
+
+5. Rebooting:
+   - You can reboot an instance without stopping it, which can be useful for applying updates or changes.
+
+6. Monitoring:
+   - Use Amazon CloudWatch to monitor the instance's performance, including CPU usage, memory usage, and disk I/O.
+
+7. Scaling:
+   - You can scale your EC2 instances up or down based on demand, either manually or using Auto Scaling groups.
+
+8. Backing Up:
+   - Create snapshots of your EBS volumes for backup and recovery purposes.
+
+9. Patching:
+   - Regularly update and patch your instances to ensure security and performance.
+
+10. Security:
+    - Implement security best practices, such as using security groups, IAM roles, and encryption.
+
+#AWS EC2 Instance Metadata:
+--------------------------------
+- Instance metadata is data about your instance that you can use to configure or manage the instance.
+- You can access instance metadata from within the instance using the following URL:
+  - http://169.254.169.254/latest/meta-data/
+- Commonly used instance metadata includes:
+  - Instance ID
+  - AMI ID
+  - Instance type
+  - Public IP address
+  - Private IP address
+  - Security group information
+- Instance metadata is useful for:
+  - Customizing instance behavior at startup
+  - Gathering information about the instance for monitoring or management
+  - Automating tasks based on instance attributes
