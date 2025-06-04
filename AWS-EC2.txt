@@ -171,3 +171,11 @@ aws ec2 describe-availability-zones
   - Customizing instance behavior at startup
   - Gathering information about the instance for monitoring or management
   - Automating tasks based on instance attributes
+
+#AWS Elastic IP Addresses:
+--------------------------------
+- Elastic IP addresses are static IPv4 addresses designed for dynamic cloud computing.
+- They allow you to mask instance failures by remapping the address to another instance.
+- Elastic IP addresses are associated with your AWS account, not a specific instance.
+- You can allocate and release Elastic IP addresses as needed.
+- There is a small hourly charge for Elastic IP addresses that are not associated with a running instance.
