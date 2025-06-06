@@ -206,3 +206,19 @@ aws ec2 describe-availability-zones
   - Implementing network redundancy
   - Isolating different types of traffic
 - You can create, attach, detach, and delete ENIs independently from the EC2 instances they are associated with.
+ 
+ #AWS EBS (Elastic Block Store):
+--------------------------------
+- Amazon EBS provides block-level storage volumes for use with EC2 instances.
+- EBS volumes are highly available and durable, designed for mission-critical applications.
+- You can create, attach, detach, and delete EBS volumes independently from the EC2 instances they are associated with.
+- EBS volumes come in different types, optimized for different use cases:
+  1. General Purpose SSD (gp2/gp3):
+     - Balanced price and performance for a wide variety of workloads.
+  2. Provisioned IOPS SSD (io1/io2):
+     - High-performance storage for I/O-intensive applications.
+  3. Throughput Optimized HDD (st1):
+     - Low-cost HDD for frequently accessed, throughput-intensive workloads.
+  4. Cold HDD (sc1):
+     - Lowest-cost HDD for less frequently accessed workloads.
+- EBS snapshots can be created for backup and recovery purposes.
