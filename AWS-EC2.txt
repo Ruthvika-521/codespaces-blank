@@ -179,3 +179,30 @@ aws ec2 describe-availability-zones
 - Elastic IP addresses are associated with your AWS account, not a specific instance.
 - You can allocate and release Elastic IP addresses as needed.
 - There is a small hourly charge for Elastic IP addresses that are not associated with a running instance.
+
+#AWS EC2 placement groups:
+--------------------------------
+- Placement groups are a way to influence the placement of a group of interdependent instances to meet the needs of your workload.
+- There are three types of placement groups:
+  1. Cluster Placement Groups:
+     - Packs instances close together in a single Availability Zone.
+     - Ideal for high-performance computing (HPC) applications that require low latency and high throughput.
+  2. Spread Placement Groups:
+     - Distributes instances across underlying hardware to reduce the risk of simultaneous failures.
+     - Suitable for critical applications that need to be isolated from each other.
+  3. Partition Placement Groups:
+     - Divides instances into logical partitions, with each partition running on separate hardware.
+     - Useful for large distributed applications, such as Hadoop, that require high throughput and low latency.
+#AWS elastic network interfaces (ENIs):
+--------------------------------
+- Elastic Network Interfaces (ENIs) are virtual network interfaces that can be attached to EC2 instances.
+- They provide additional networking capabilities, such as:
+  - Multiple IP addresses (primary and secondary)
+  - Elastic IP addresses
+  - Security groups
+  - MAC addresses
+- ENIs can be used for:
+  - Creating a management network
+  - Implementing network redundancy
+  - Isolating different types of traffic
+- You can create, attach, detach, and delete ENIs independently from the EC2 instances they are associated with.
