@@ -357,3 +357,22 @@ aws ec2 describe-availability-zones
   2. **IAM Policies**: You can use AWS Identity and Access Management (IAM) policies to control access to EFS resources.
   3. **Encryption**: EFS supports encryption at rest and in transit to protect your data.
   4. **Security Groups**: You can use security groups to control inbound and outbound traffic to your EFS mount targets.
+
+#AWS EFS performance & storage classes:
+--------------------------------
+- EFS offers two performance modes:
+  1. **General Purpose**: Suitable for a broad range of use cases, providing low latencies and high throughput.
+  2. **Max I/O**: Designed for high levels of aggregate throughput and IOPS, ideal for large-scale data processing workloads.
+
+- EFS offers two throughput modes:
+  1. **Bursting Throughput**: Provides a baseline throughput level with the ability to burst to higher levels for short periods.
+  2. **Provisioned Throughput**: Allows you to specify the desired throughput level, independent of the amount of data stored.
+- EFS supports two storage classes:
+  1. **Standard**: Designed for frequently accessed files, providing low latencies and high throughput.
+  2. **Infrequent Access (IA)**: Designed for less frequently accessed files, offering lower costs while maintaining accessibility.
+  3. archive: Designed for long-term storage of files that are rarely accessed, providing the lowest cost per GB.
+  
+- EFS provides lifecycle management features to automatically move files between different storage classes based on access patterns.
+- You can configure lifecycle policies to transition files to the EFS Infrequent Access (IA) storage class after a specified period of inactivity.
+- This helps optimize costs by storing less frequently accessed files in a lower-cost storage class while keeping them accessible when needed.
+- Lifecycle management can be configured using the AWS Management Console, CLI, or SDKs.
