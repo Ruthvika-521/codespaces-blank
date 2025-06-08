@@ -222,3 +222,138 @@ aws ec2 describe-availability-zones
   4. Cold HDD (sc1):
      - Lowest-cost HDD for less frequently accessed workloads.
 - EBS snapshots can be created for backup and recovery purposes.
+
+#AWS EBS Volume Types:
+--------------------------------
+- General Purpose SSD (gp2/gp3):
+  - Balanced price and performance for a wide variety of workloads.
+- Provisioned IOPS SSD (io1/io2):
+  - High-performance storage for I/O-intensive applications.
+- Throughput Optimized HDD (st1):
+  - Low-cost HDD for frequently accessed, throughput-intensive workloads.
+- Cold HDD (sc1):
+  - Lowest-cost HDD for less frequently accessed workloads.
+#AWS EBS Snapshots:
+--------------------------------
+- EBS snapshots are point-in-time backups of EBS volumes.
+- They are stored in Amazon S3 and can be used for backup, recovery, and creating new EBS volumes.
+- Snapshots are incremental, meaning only the changes since the last snapshot are saved, reducing storage costs.
+- You can create snapshots manually or automate the process using AWS Backup or lifecycle policies.
+
+#AWS EBS snapshot types and their use cases:
+--------------------------------------------
+--EBS snapshot archive:
+  - Long-term storage of EBS snapshots for compliance and regulatory requirements.
+  - Cost-effective solution for retaining snapshots that are not frequently accessed.
+--Recycle bin for EBS snapshots:
+  - Temporary storage for deleted EBS snapshots, allowing recovery within a specified retention period.
+  - Useful for accidental deletions or changes in backup strategies.
+-- Fast recovery snapshots:
+  - Optimized for quick recovery of EBS volumes.
+  - Useful for critical applications that require minimal downtime.
+
+#AWS EBS Volume Lifecycle:
+--------------------------------
+- EBS volumes can be created, attached, detached, and deleted independently from the EC2 instances they are associated with.
+- You can modify the size, type, and IOPS of an EBS volume while it is in use.
+- EBS volumes can be backed up using snapshots, which are stored in Amazon S3.
+
+#AWS EBS Encryption:
+--------------------------------
+- EBS encryption provides an additional layer of security for your data at rest.
+- It uses AWS Key Management Service (KMS) to manage encryption keys.
+- EBS encryption is transparent to the user and does not require any changes to applications.
+- You can enable encryption when creating a new EBS volume or encrypt an existing volume using snapshots.
+- Encrypted volumes can only be attached to instances that support EBS encryption.
+
+#commands to formate and mount EBS volumes to EC2 instances:
+--------------------------------
+1. Format the EBS volume (assuming /dev/xvdf is the device name):
+   ```
+   sudo mkfs -t ext4 /dev/xvdf
+   ```
+
+2. Create a mount point:
+   ```
+   sudo mkdir /mnt/mydata
+   ```
+
+3. Mount the EBS volume:
+   ```
+   sudo mount /dev/xvdf /mnt/mydata
+   ```
+
+4. (Optional) Add the mount entry to /etc/fstab for automatic mounting on reboot:
+   ```
+   echo '/dev/xvdf /mnt/mydata ext4 defaults,nofail 0 2' | sudo tee -a /etc/fstab
+   ```
+
+#AWS AMI (Amazon Machine Image):
+--------------------------------
+- An AMI is a pre-configured template for creating EC2 instances.
+- It includes the operating system, application server, and applications.
+- You can create your own AMIs or use public AMIs provided by AWS.
+- AMIs are stored in Amazon S3 and can be shared with other AWS accounts.
+- When launching an EC2 instance, you must specify an AMI ID.
+#AWS AMI Types:
+--------------------------------
+- Amazon Machine Image (AMI) is a pre-configured template for creating EC2 instances.
+- There are several types of AMIs available:
+  1. **Quick Start AMIs**: Pre-configured AMIs provided by AWS for popular operating systems.
+  2. **Community AMIs**: AMIs shared by other AWS users, available in the AWS Marketplace.
+  3. **My AMIs**: Custom AMIs created by you from existing EC2 instances.
+  4. **AWS Marketplace AMIs**: Commercial AMIs available for purchase in the AWS Marketplace.
+#AWS AMI Creation:
+--------------------------------
+- You can create an AMI from an existing EC2 instance using the AWS Management Console, CLI, or SDKs.
+- When creating an AMI, you can choose to include the instance's EBS volumes and their data.
+- The AMI creation process involves taking a snapshot of the instance's EBS volumes and storing it in Amazon S3.
+- Once created, the AMI can be used to launch new EC2 instances with the same configuration and software as the original instance.
+#AWS AMI Sharing:
+--------------------------------
+- You can share your AMIs with other AWS accounts or make them public.
+- To share an AMI, modify its permissions using the AWS Management Console, CLI, or SDKs.
+- When sharing an AMI, you can specify whether to allow launch permissions, copy permissions, or both.
+- Shared AMIs can be used to launch new EC2 instances in the recipient's account.
+#AWS AMI Lifecycle:
+--------------------------------
+- AMIs have a lifecycle that includes creation, sharing, and deletion.
+- You can delete an AMI when it is no longer needed, which will also delete the associated snapshots.
+- Deleting an AMI does not affect any EC2 instances that were launched from it.
+
+
+#AWS Elastic File System (EFS):
+--------------------------------
+- Amazon EFS is a fully managed, scalable, and elastic NFS file system for use with AWS Cloud services and on-premises resources.
+- EFS is designed to be highly available and durable, automatically replicating data across multiple Availability Zones.
+- It can be mounted on multiple EC2 instances simultaneously, allowing for shared access to files.
+- EFS is ideal for use cases such as content management, web serving, and data analytics.
+#AWS EFS Mount Targets:
+--------------------------------
+- Mount targets are the entry points for EC2 instances to access an EFS file system.
+- Each mount target is associated with a specific VPC and subnet.
+- You can create multiple mount targets in different subnets for high availability and low latency.
+- Mount targets use the DNS name of the file system to allow EC2 instances to connect to it.
+#AWS EFS Performance Modes:
+--------------------------------
+- EFS offers two performance modes:
+  1. **General Purpose**: Suitable for a broad range of use cases, providing low latencies and high throughput.
+  2. **Max I/O**: Designed for high levels of aggregate throughput and IOPS, ideal for large-scale data processing workloads.
+#AWS EFS Throughput Modes:
+--------------------------------
+- EFS offers two throughput modes:
+  1. **Bursting Throughput**: Provides a baseline throughput level with the ability to burst to higher levels for short periods.
+  2. **Provisioned Throughput**: Allows you to specify the desired throughput level, independent of the amount of data stored.
+#AWS EFS Lifecycle Management:
+--------------------------------
+- EFS provides lifecycle management features to automatically move files between different storage classes based on access patterns.
+- You can configure lifecycle policies to transition files to the EFS Infrequent Access (IA) storage class after a specified period of inactivity.
+- This helps optimize costs by storing less frequently accessed files in a lower-cost storage class while keeping them accessible when needed.
+- Lifecycle management can be configured using the AWS Management Console, CLI, or SDKs.
+#AWS EFS Security:
+--------------------------------
+- EFS provides several security features to protect your data:
+  1. **VPC Integration**: EFS can be mounted only within a VPC, providing network isolation.
+  2. **IAM Policies**: You can use AWS Identity and Access Management (IAM) policies to control access to EFS resources.
+  3. **Encryption**: EFS supports encryption at rest and in transit to protect your data.
+  4. **Security Groups**: You can use security groups to control inbound and outbound traffic to your EFS mount targets.
