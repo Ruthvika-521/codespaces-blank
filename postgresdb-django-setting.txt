@@ -15,6 +15,11 @@ sudo apt install -y \
   python3-dev \
   build-essential \
   pkg-config
+=> gunicorn job.wsgi:application --bind 0.0.0.0:8000
+=>sudo chmod -R o+r /home/ram/job/static
+=>sudo chmod -R o+x /home/ram/job/static
+=>sudo chmod o+x /home/ram
+=>sudo chmod o+x /home/ram/job
 
 #postgresql settings:
 =>sudo nano /etc/postgresql/12/main/postgresql.conf # Edit PostgreSQL configuration file

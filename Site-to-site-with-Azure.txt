@@ -7,7 +7,7 @@
 
  2. Create Virtual Network
 
- Resource Group Name: rg-azure-aws
+ Resource Group Name: rg-azure-aws 
  Region: East-US
  VNet Name: vnet-azure
  VNet IPv4 Address Space: 172.10.0.0/16
