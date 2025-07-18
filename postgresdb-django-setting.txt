@@ -1,0 +1,48 @@
+source myenv/bin/activate
+sudo apt install -y python3 python3-pip python3-venv
+sudo apt install -y pkg-config default-libmysqlclient-dev build-essential python3-dev
+sudo apt install -y \
+  libffi-dev \
+  libjpeg-dev \
+  zlib1g-dev \
+  libpng-dev \
+  libfreetype-dev \
+  liblcms2-dev \
+  libopenjp2-7-dev \
+  libtiff-dev \
+  tk-dev \
+  tcl-dev \
+  python3-dev \
+  build-essential \
+  pkg-config
+
+#postgresql settings:
+=>sudo nano /etc/postgresql/12/main/postgresql.conf # Edit PostgreSQL configuration file
+   listen_addresses = '*'
+=>sudo nano /etc/postgresql/12/main/pg_hba.conf # Edit PostgreSQL host-based authentication file
+    # Add the following line to allow all IP addresses to connect
+    host    all             all             10.0.0.5/32           md5
+
+
+
+#postgresql installation on ubuntu:
+=>sudo apt install -y postgresql postgresql-contrib libpq-dev  # Install PostgreSQL and its development libraries   
+=>sudo -u postgres psql -c "CREATE USER myuser WITH PASSWORD 'mypassword';" # Create a new user with a password
+=>sudo -u postgres psql -c "CREATE DATABASE mydb WITH OWNER myuser;"    # Create a new database with the user as owner  
+=>sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;"   # Grant privileges to user on the database  
+=>sudo -u postgres psql -c "ALTER USER myuser CREATEDB;" # Allow user to create databases   
+=>sudo -u postgres psql -c "ALTER USER myuser WITH SUPERUSER;" # Make user a superuser  
+=>sudo -u postgres psql -c "ALTER USER myuser WITH PASSWORD 'newpassword';" # Change the user's password    
+=>sudo -u postgres psql -c "DROP USER myuser;" # Drop the user if needed
+=>sudo -u postgres psql -c "DROP DATABASE mydb;" # Drop the database if needed  
+=>sudo -u postgres psql -c "SELECT * FROM pg_user;" # List all users in PostgreSQL  
+=>sudo -u postgres psql -c "SELECT * FROM pg_database;" # List all databases in PostgreSQL
+=>sudo -u postgres psql -c "SELECT * FROM pg_tables;" # List all tables in PostgreSQL   
+=>sudo -u postgres psql -c "SELECT * FROM pg_indexes;" # List all indexes in PostgreSQL
+=>sudo -u postgres psql -c "SELECT * FROM pg_stat_activity;" # List all active connections in PostgreSQL    
+=>sudo -u postgres psql -c "SELECT * FROM pg_stat_user_tables;" # List all user tables in PostgreSQL    
+=>sudo -u postgres psql -c "SELECT * FROM pg_stat_user_indexes;" # List all user indexes in PostgreSQL  
+=>#list all databases in PostgreSQL
+=>sudo -u postgres psql -c "SELECT datname FROM pg_database;" # List all database names in PostgreSQL   
+=>sudo -u postgres psql -c "SELECT usename FROM pg_user;" # List all user names in PostgreSQL
+=>sudo -u postgres psql -c "SELECT * FROM pg_roles;" # List all roles in PostgreSQL
