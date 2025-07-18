@@ -25,6 +25,7 @@ sudo apt install -y \
     host    all             all             10.0.0.5/32           md5
 
 =>Barman (Backup and Recovery Manager) for postgres backup
+=>WAL-G (Recommended for Production) same for postgres backup
 
 #postgresql installation on ubuntu:
 =>sudo apt install -y postgresql postgresql-contrib libpq-dev  # Install PostgreSQL and its development libraries   
