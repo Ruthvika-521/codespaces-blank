@@ -4,5 +4,5 @@
 =>sudo systemctl enable nginx
 =>sudo ufw allow 'Nginx Full' # Allow Nginx through the firewall
 =>sudo ufw status # Check firewall status
-=>sudo nano /etc/nginx/sites-available/default # Edit Nginx default configuration file
+=>sudo vi /etc/nginx/sites-available/default # Edit Nginx default configuration file
     
