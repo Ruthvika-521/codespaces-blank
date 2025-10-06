@@ -1,5 +1,32 @@
+#VPC main topics:
+-----------------
+1)VPC
+2)Subnet
+3)Internet Gateway
+4)Route Table
+5)Bastion Host
+6)NAT Gateway
+7)NAT Instance
+8)NACL (Network Access Control List)
+9)Security Groups
+10)VPC Peering
+11)VPC Endpoints
+12)VPC Flow Logs + Anthena
+13)AWS site-to-site VPN & Customer Gateway
+14)AWS Direct Connect
+15)AWS Transit Gateway
+16)VPC traffic mirroring
+17)Egress-only internet gateway
+18)AWS network firewall
+19)IP V6
+20)Elastic IP
+21)Elastic Network Interface (ENI)
+22)PrivateLink
+23)VPC sharing
+
 Section 27: VPC 
 ----------------
+-> CIDR calculation link: https://www.ipaddressguide.com/cidr
 ->Classless inter-Domain Routing - a method for allocating IP addresses.
 ->used in Security Groups and Network ACLs.
 ->they help to define an IP address range for a VPC.
@@ -32,7 +59,7 @@ Section 27: VPC
 ->the internet assigned numbers authority(IANA) established certain blocks of IPv4 addresses for the use of private (LAN) and pulic (internet) addresses.
 ->Private IP can only allow certain values:
     ->10.0.0.0 -> 10.255.255.255 (10.0.0.0/8) => in big networks
-    ->172.16.0.0 -> 172.31.255.255 (172.16.0.0/12)=> aws default VPC in that range
+    ->172.16.0.0 -> 172.31.255.255 (172.31.0.0/12)=> aws default VPC in that range
     ->192.168.0.0 -> 192.168.255.255 (192.168.0.0/16) => in small networks(eg home networks)
 ->all the rest of the IPs are public IPs.
 
@@ -43,6 +70,12 @@ Section 27: VPC
 ->New EC2 instances are launched into the default VPC if no subnet is specified.
 ->Default VPC has internet connectivity by default. and all EC2 instances launched into the default VPC have public IP addresses.
 ->we also get a public and a private IPv4 DNS names.
+->you can have multiple vpc's in an AWS region(max. 5 per region-soft limit).
+->Max CIDR per VPC IS 5, for each CIDR:
+    ->you can have a primary CIDR and 4 secondary CIDRs.
+    ->the primary CIDR must be between /16 and /28.
+    ->the secondary CIDRs must be between /16 and /28.
+    ->the maximum number of IP addresses in a VPC is 65,536 (2^16).
 
 #subnet:
 --------
@@ -55,6 +88,7 @@ Section 27: VPC
         ->10.0.0.2 (Reserved for DNS)
         ->10.0.0.3 (Reserved for future use)
         ->10.0.0.255 (Broadcast Address)
+
 #internet gateway:
 -------------------
 ->An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances in your VPC and the internet.
@@ -86,6 +120,7 @@ Section 27: VPC
 ->NACLs operate at the subnet level and can be associated with one or more subnets in a VPC.
 ->NACLs allow you to define rules that control traffic based on IP protocol, port number, and source/destination IP address.
 ->NACLs are stateless, meaning that if you allow inbound traffic, you must also allow the corresponding outbound traffic.
+->NACLs have a number (1-32766) to determine the order of evaluation, with lower numbers being evaluated first.
 
 #Security Groups:
 -------------------
@@ -119,8 +154,8 @@ Section 27: VPC
     ->Interface Endpoints: These endpoints are used to connect to AWS services that support PrivateLink, such as Amazon S3, Amazon DynamoDB, and AWS Lambda.
     ->Gateway Endpoints: These endpoints are used to connect to AWS services that do not support PrivateLink, such as Amazon S3 and Amazon DynamoDB.
 ->VPC endpoints are highly available and scalable, and they provide a secure and private connection to AWS services.
-->gateway is most commonly used for S3 and DynamoDB.
-->interface is used for most other services.
+->gateway is most commonly used for S3 and DynamoDB. we use route tables to control access to the endpoint.
+->interface is used for most other services. we use security groups with interface endpoints to control access to the endpoint.
 
 #VPC Flow Logs:
 -------------------
@@ -129,6 +164,22 @@ Section 27: VPC
 ->You can create flow logs for individual network interfaces, subnets, or the entire VPC.
 ->Flow log data is published to Amazon CloudWatch Logs or Amazon S3, where you can analyze it using various tools.
 ->Flow logs capture information such as source and destination IP addresses, ports, protocols, and the number of bytes transferred.
+->VPC flow logs syntax:
+    ->version
+    ->account-id
+    ->interface-id
+    ->srcaddr
+    ->dstaddr
+    ->srcport
+    ->dstport
+    ->protocol
+    ->packets
+    ->bytes
+    ->start
+    ->end
+    ->action (ACCEPT or REJECT)
+    ->log-status (OK, NODATA, SKIPDATA)
+    ex: 2 123456789012 eni-abc123de 172.31.0.0 172.31.0.1 12345 80 6 10 1000 1618915200 1618915260 ACCEPT OK    
 
 #AWS site-to-site VPN:
 ----------------------
@@ -163,3 +214,4 @@ Section 27: VPC
 ->An egress-only internet gateway is a VPC component that allows outbound IPv6 traffic from instances in your VPC to the internet while preventing unsolicited inbound traffic from the internet.
 ->Egress-only internet gateways are used to enable IPv6-enabled instances in a private subnet to access the internet for software updates, patches, and other outbound traffic.
 ->You can create an egress-only internet gateway using the AWS Management Console, AWS CLI, or AWS SDKs.
+
