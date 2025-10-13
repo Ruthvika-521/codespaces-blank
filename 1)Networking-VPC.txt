@@ -203,7 +203,7 @@ Section 27: VPC
 ->Transit Gateway simplifies network architecture by providing a central hub for routing traffic between connected networks.
 ->You can create a Transit Gateway using the AWS Management Console, AWS CLI, or AWS SDKs.
 ->Transit Gateway supports both IPv4 and IPv6 traffic, and it can be used to connect VPCs in the same AWS account or in different AWS accounts.
-
+-> https://www.youtube.com/watch?v=GV4KreiF_D4
 #IP V6:
 ----------------------
 ->IPv6 (Internet Protocol version 6) is the most recent version of the Internet Protocol (IP), designed to replace IPv4.
