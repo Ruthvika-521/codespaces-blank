@@ -26,6 +26,7 @@ aws sts get-service-bearer-token --service-id <service-id> --duration-seconds <s
 ---------------------------------
 
 # About STS(Security Token Service):
+------------------------------------
 -> AWS Security Token Service (STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). This is particularly useful for scenarios where you want to grant access to AWS resources without sharing long-term credentials. 
 -> STS is commonly used in scenarios such as cross-account access, federated user access, and mobile or web applications that need temporary access to AWS resources.   
 -> Temporary security credentials provided by STS consist of an access key ID, a secret access key, and a security token. These credentials are valid for a specified duration, after which they expire and can no longer be used.  
@@ -75,3 +76,13 @@ aws sts get-service-bearer-token --service-id <service-id> --duration-seconds <s
 3. Use Temporary Credentials: Use the temporary credentials to access AWS resources as needed.  
 4. Handle Expiration: Monitor the expiration of temporary credentials and request new ones as needed.
 ---------------------------------
+
+
+# STS Importent API's:
+1. AssumeRole: This API operation allows you to assume a specified IAM role and obtain temporary security credentials. It is commonly used for cross-account access and delegation of permissions.
+2. GetCallerIdentity: This API operation returns details about the IAM user or role whose credentials are used to call the operation. It is useful for verifying the identity of the caller.
+3. GetSessionToken: This API operation provides temporary security credentials for IAM users or federated users. It is often used in scenarios where you need to provide temporary access to AWS resources.
+4. AssumeRoleWithSAML: This API operation allows you to assume a role using SAML-based authentication. It is commonly used in federated access scenarios where users authenticate through an external identity provider.
+5. AssumeRoleWithWebIdentity: This API operation allows you to assume a role using web identity tokens, such as those from Amazon Cognito or other identity providers. It is useful for mobile and web applications that require temporary access to AWS resources.
+---------------------------------   
+
